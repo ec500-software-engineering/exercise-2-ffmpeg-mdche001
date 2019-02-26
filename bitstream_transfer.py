@@ -1,8 +1,6 @@
-import ffmpy
 import os
 import subprocess
 import queue
-import threading
 import asyncio
 import pytest
 import time
@@ -11,29 +9,23 @@ async def transfer_bit480(queue_name):
     "Convert vedio"
     transfer_file = queue_name.get()
     # print(transfer_file)
-    try:
-        # os.chdir('C:/Users/synox/mini_project1/') change to dirctionary including images
-        # oppo = ['ffmpeg -i' + transfer_file + '-r 30 -s hd480 -b:v 1024k -loglevel quiet' + t./transcoded_video.mp4]
-        subprocess.Popen('ffmpeg -i ./' + transfer_file + ' -r 30 -s hd480 -b:v 1024k ./transcoded_video_480p.mp4')
-        # subprocess.Popen("ffmpeg -i ./" + transfer_file + " -vcodec h264 -b:v 1048576 -s 720*480 -r 30 ./transcoded_video.mp4")
-        print("--------------480p All done")
-        return "transcoded_video_480p"
-
-    except:
-        print('error')
+    # os.chdir('C:/Users/synox/mini_project1/') change to dirctionary including images
+    # oppo = ['ffmpeg -i' + transfer_file + '-r 30 -s hd480 -b:v 1024k -loglevel quiet' + t./transcoded_video.mp4]
+    subprocess.Popen('ffmpeg -i ./' + transfer_file + ' -r 30 -s hd480 -b:v 1024k ./transcoded_video_480p.mp4')
+    # subprocess.Popen("ffmpeg -i ./" + transfer_file + " -vcodec h264 -b:v 1048576 -s 720*480 -r 30 ./transcoded_video.mp4")
+    print("--------------480p All done")
+    return "transcoded_video_480p"
 
 
 async def transfer_bit720(queue_name):
     "Convert vedio"
     transfer_file = queue_name.get()
     # print(transfer_file)
-    try:
-        subprocess.Popen('ffmpeg -i ./' + transfer_file + ' -r 30 -s hd720 -b:v 1024k ./transcoded_video_720p.mp4')
-        print("-------------720p All done")
-        return "transcoded_video_720p"
 
-    except:
-        print('error')
+    subprocess.Popen('ffmpeg -i ./' + transfer_file + ' -r 30 -s hd720 -b:v 1024k ./transcoded_video_720p.mp4')
+    print("-------------720p All done")
+    return "transcoded_video_720p"
+
 
 async def put_in_queue(queue_name,file_name):
     format_name = file_name + ".mp4"
@@ -57,9 +49,9 @@ if __name__ == "__main__":
     files = os.listdir()
     for file in files:
         if(os.path.basename(os.path.realpath(__file__)) == "ranscoded_video_480p.mp4"):
-            file_name1 == os.path.basename(url)
+            file_name1 == os.path.basename(os.path.realpath(__file__))
         elif(os.path.basename(os.path.realpath(__file__)) == "ranscoded_video_720p.mp4"):
-            file_name2 == os.path.basename(url)
+            file_name2 == os.path.basename(os.path.realpath(__file__))
 
 
     assert filename1 == pytest.approx("ranscoded_video_480p.mp4")
