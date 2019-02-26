@@ -29,7 +29,7 @@ async def transfer_bit720(queue_name):
 
 async def put_in_queue(queue_name,file_name):
     format_name = file_name + ".mp4"
-    if (queue_name.full()== True):
+    if (queue_name.full() is True):
         queue_name.get()
         queue_name.put(format_name)
     else:
@@ -49,9 +49,9 @@ if __name__ == "__main__":
     files = os.listdir()
     for file in files:
         if(os.path.basename(os.path.realpath(__file__)) == "ranscoded_video_480p.mp4"):
-            file_name1 == os.path.basename(os.path.realpath(__file__))
+            filename1 = os.path.basename(os.path.realpath(__file__))
         elif(os.path.basename(os.path.realpath(__file__)) == "ranscoded_video_720p.mp4"):
-            file_name2 == os.path.basename(os.path.realpath(__file__))
+            filename2 = os.path.basename(os.path.realpath(__file__))
 
 
     assert filename1 == pytest.approx("ranscoded_video_480p.mp4")
