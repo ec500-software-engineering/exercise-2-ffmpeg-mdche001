@@ -56,13 +56,14 @@ if __name__ == "__main__":
 
     files = os.listdir()
     for file in files:
-        if(os.path.basename(url) == "ranscoded_video_480p.mp4"):
+        if(os.path.basename(os.path.realpath(__file__)) == "ranscoded_video_480p.mp4"):
             file_name1 == os.path.basename(url)
-        elif(os.path.basename(url) == "ranscoded_video_720p.mp4"):
+        elif(os.path.basename(os.path.realpath(__file__)) == "ranscoded_video_720p.mp4"):
             file_name2 == os.path.basename(url)
 
-    assert filename1 == "ranscoded_video_480p.mp4"
-    assert filename2 == "ranscoded_video_720p.mp4"
+
+    assert filename1 == pytest.approx("ranscoded_video_480p.mp4")
+    assert filename2 == pytest.approx("ranscoded_video_720p.mp4")
     print("---transfermation successful!--------")
     duration = time.clock() - start_time
     print("Total_running time is:", duration)
