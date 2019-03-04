@@ -26,6 +26,7 @@ async def transfer_bit720(queue_name):
     if (queue_name.empty() is True):
         return 'No vedio'
     else:
+        transfer_file = queue_name.get()
     # print(transfer_file)
         subprocess.Popen('ffmpeg -i ./' + transfer_file + ' -r 30 -s hd720 -b:v 1024k ./transcoded_video_720p.mp4')
         print("-------------720p All done")
